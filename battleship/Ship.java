@@ -45,7 +45,6 @@ public abstract class Ship {
     }
 
     public boolean shootAt(int row, int column){
-
     }
 
     public boolean isRealShip(){
@@ -53,7 +52,12 @@ public abstract class Ship {
     }
 
     public boolean isSunk(){
-        return false;
+        for (int i = 0; i< hit.length; i++){
+            if (!hit[i]){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

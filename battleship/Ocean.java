@@ -24,8 +24,4 @@ public class Ocean {
             }
         }
     }
-
-    public void placeAllShipsRandomly(){
-
-    }
 }
