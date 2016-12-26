@@ -4,11 +4,11 @@ package battleship;
  * Created by aman1 on 26/12/2016.
  */
 public abstract class Ship {
-    int bowRow;
-    int bowColumn;
-    int length;
-    boolean horizontal;
-    boolean [] hit;
+    private int bowRow;
+    private int bowColumn;
+    private int length;
+    private boolean horizontal;
+    private boolean [] hit;
 
     public Ship(int length){
         this.length = length;
