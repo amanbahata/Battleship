@@ -6,11 +6,11 @@ package battleship;
 public class BattleShip extends Ship {
 
     public BattleShip(){
-        super()
+        super(4);
     }
 
     @Override
     public String getShipType() {
-        return null;
+        return "Battle ship";
     }
 }
