@@ -44,5 +44,16 @@ public abstract class Ship {
         this.horizontal = horizontal;
     }
 
+    public boolean shootAt(int row, int column){
+
+    }
+
+    public boolean isRealShip(){
+        return true;
+    }
+
+    public boolean isSunk(){
+        return false;
+    }
 
 }
