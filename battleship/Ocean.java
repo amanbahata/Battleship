@@ -18,8 +18,8 @@ public class Ocean {
     }
 
     private void fillShips(){
-        for (int i = 0; i < ships.length; i++){
-            for (int j = 0; j<ships.length; j++){
+        for (int i = 0; i < ships.length; i++){        // i = row
+            for (int j = 0; j<ships.length; j++){      // j = columns
                 ships[i][j] = new EmptySea();
             }
         }

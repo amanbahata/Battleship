@@ -45,6 +45,10 @@ public abstract class Ship {
     }
 
     public boolean shootAt(int row, int column){
+        if (Ocean.isOccupied(row,column) && !isSunk()){
+            return true;
+        }
+        return false;
     }
 
     public boolean isRealShip(){
