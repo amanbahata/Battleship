@@ -24,4 +24,16 @@ public class Ocean {
             }
         }
     }
+
+    public boolean isOccupied(int row, int column){
+        return false;
+    }
+
+    public boolean hasSunkShipAt(int row, int column){
+        return false;
+    }
+
+    public String getShipTypeAt(int row, int column){
+
+    }
 }
