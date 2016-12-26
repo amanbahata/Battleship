@@ -29,4 +29,20 @@ public abstract class Ship {
     public int getLength(){
         return this.length;
     }
+
+    public abstract String getShipType();
+
+    public void setBowRow(int row){
+        this.bowRow = row;
+    }
+
+    public void setBowColumn(int column){
+        this.bowColumn = column;
+    }
+
+    public void setHorizontal(boolean horizontal){
+        this.horizontal = horizontal;
+    }
+
+
 }
