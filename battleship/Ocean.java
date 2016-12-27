@@ -1,7 +1,7 @@
 package battleship;
 
 /**
- * Created by aman1 on 26/12/2016.
+ * @author Aman Enghida on 26/12/2016.
  */
 public class Ocean {
     private Ship [][] ships;
@@ -25,6 +25,10 @@ public class Ocean {
         }
     }
 
+    public void placeAllShipsRandomly(){
+
+    }
+
     public boolean isOccupied(int row, int column){
         return false;
     }
@@ -33,7 +37,22 @@ public class Ocean {
         return false;
     }
 
-    public String getShipTypeAt(int row, int column){
+    public String getShipTypeAt(int row, int column){return "";}
 
+    public boolean shootAt(int row, int column){ return false; }
+
+    public int getShotsFired(){ return this.shotsFired; }
+
+    public int getHitCount(){ return this.hitCount; }
+
+    public int getShipsSunk(){ return this.shipsSunk; }
+
+    public boolean isGameOver(){
+        int totalNoOfShips = 10 ;
+        if (this.shipsSunk == totalNoOfShips){
+            return true;
+        }
+        return false;
     }
+
 }
