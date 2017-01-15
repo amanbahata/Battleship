@@ -15,6 +15,9 @@ public abstract class Ship {
         this.hit = new boolean[length];
     }
 
+    public boolean isRealShip(){
+        return true;
+    }
 
     public abstract String getShipType();
 
