@@ -22,6 +22,17 @@ class OceanTest {
         assertEquals(true, ocean.isOccupied(5,0));
     }
 
+    @Test
+    public void testGetShipTypeAt(){
+        String emptySea = "Empty sea";
+        assertEquals(emptySea, ocean.getShipTypeAt(0,0));
+    }
+
+    @Test
+    public void testShootAt(){
+        assertEquals(false, ocean.shootAt(0,3));
+    }
+
 
 
 

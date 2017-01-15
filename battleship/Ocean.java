@@ -42,6 +42,25 @@ public class Ocean {
 //
 //    }
 
+//    public boolean hasSunkShipAt(int row, int column){
+//
+//
+//    }
+
+    public boolean shootAt(int row, int column){
+        this.shotsFired += 1;
+        if (ships[row][column].isRealShip() && !ships[row][column].isSunk()){
+            this.hitCount += 1;
+            ships[row][column].
+            return true;
+        }
+        return false;
+    }
+
+    public String getShipTypeAt(int row, int column){
+        return ships[row][column].getShipType();
+    }
+
     public boolean isOccupied(int row, int column){
         if (isEqual(this.ships[row][column])){
             return true;

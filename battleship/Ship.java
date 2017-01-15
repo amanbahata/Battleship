@@ -15,6 +15,29 @@ public abstract class Ship {
         this.hit = new boolean[length];
     }
 
+    public boolean shootAt(int row, int column){
+
+        if (this.horizontal) {
+            if ((row == this.bowRow) && column >= bowColumn & column <= (bowColumn + length)-1) {
+                if(!isSunk()){
+                    int hitPositionOfTheShip = (bowColumn + length - 1) - column ;
+                    hit[hitPositionOfTheShip] = true;
+                    return true;
+                }
+            }
+        }
+        else if (!this.horizontal) {
+            if ((column == this.bowColumn) && row >= bowRow & row <= (bowRow + length)-1) {
+                if(!isSunk()){
+                    int hitPositionOfTheShip = (bowRow + length - 1) - row ;
+                    hit[hitPositionOfTheShip] = true;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public boolean isSunk(){
         for (int i=0; i< hit.length; i++){
             if (!hit[i]){
