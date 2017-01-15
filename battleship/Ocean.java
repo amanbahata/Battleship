@@ -1,5 +1,7 @@
 package battleship;
 
+import java.util.Random;
+
 /**
  * Created by aman1 on 15/01/2017.
  */
@@ -18,7 +20,7 @@ public class Ocean {
     }
 
     public void fillShipsArrayWithEmptySeas(Ship[][] ships){
-        for (int i=0; i<ships[i].length; i++){
+        for (int i=0; i<ships.length; i++){
             for (int j=0; j<ships[i].length; j++){
                 ships[i][j] = new EmptySea();
             }
@@ -26,4 +28,33 @@ public class Ocean {
 
     }
 
+    public Ship getShipLocation(){
+        return ships[5][0];
+    }
+
+    public int getShotsFired() {
+        return shotsFired;
+    }
+
+
+//    public void placeAllShipsRandomly(){
+//        Random random = new Random();
+//
+//    }
+
+    public boolean isOccupied(int row, int column){
+        if (isEqual(this.ships[row][column])){
+            return true;
+        }
+        return false;
+    }
+
+
+// Provides an implementation of equals()
+    private boolean isEqual(Object obj){
+        if (!(obj instanceof EmptySea)){
+            return false;
+        }
+        return true;
+    }
 }
