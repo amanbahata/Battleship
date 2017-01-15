@@ -15,6 +15,15 @@ public abstract class Ship {
         this.hit = new boolean[length];
     }
 
+    public boolean isSunk(){
+        for (int i=0; i< hit.length; i++){
+            if (!hit[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean isRealShip(){
         return true;
     }
