@@ -1,7 +1,7 @@
 package battleship;
 
 /**
- * Created by Aman Enghida on 26/12/2016.
+ * Created by aman1 on 15/01/2017.
  */
 public abstract class Ship {
     private int bowRow;
@@ -15,54 +15,34 @@ public abstract class Ship {
         this.hit = new boolean[length];
     }
 
-    public int getBowRow(){
-        return this.bowRow;
-    }
-
-    public int getBowColumn(){
-        return this.bowColumn;
-    }
-
-    public boolean isHorizontal(){
-        return this.horizontal;
-    }
-    public int getLength(){
-        return this.length;
-    }
 
     public abstract String getShipType();
 
-    public void setBowRow(int row){
+    public boolean isHorizontal(){
+        return horizontal;
+    }
+
+    public int getBowRow() {
+        return bowRow;
+    }
+
+    public void setBowRow(int row) {
         this.bowRow = row;
     }
 
-    public void setBowColumn(int column){
+    public int getBowColumn() {
+        return bowColumn;
+    }
+
+    public void setBowColumn(int column) {
         this.bowColumn = column;
     }
 
-    public void setHorizontal(boolean horizontal){
+    public int getLength() {
+        return length;
+    }
+
+    public void setHorizontal(boolean horizontal) {
         this.horizontal = horizontal;
     }
-
-    public boolean shootAt(int row, int column){
-        if (Ocean.isOccupied(row,column) && !isSunk()){
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isRealShip(){
-        return true;
-    }
-
-    public boolean isSunk(){
-        for (int i = 0; i< hit.length; i++){
-            if (!hit[i]){
-                return false;
-            }
-        }
-        return true;
-    }
-
-
 }
