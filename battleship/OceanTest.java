@@ -33,6 +33,22 @@ class OceanTest {
         assertEquals(false, ocean.shootAt(0,3));
     }
 
+    @Test
+    public void testGetShipArray(){
+        Ship[][] ships = ocean.getShipArray();
+
+        System.out.println();
+
+        for (int i=0; i< ships.length; i++){
+            System.out.print(i + " ");
+            for (int j=0; j< ships[i].length; j++){
+                System.out.print(" " + ships[i][j].getShipType());
+                assertEquals("Empty sea", ships[i][j].getShipType() );
+            }
+            System.out.println();
+        }
+    }
+
 
 
 

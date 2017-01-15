@@ -42,16 +42,20 @@ public class Ocean {
 //
 //    }
 
-//    public boolean hasSunkShipAt(int row, int column){
-//
-//
-//    }
+    public boolean hasSunkShipAt(int row, int column){
+        if (ships[row][column].isRealShip()){
+            return true;
+        }
+        return false;
+    }
+
+
 
     public boolean shootAt(int row, int column){
         this.shotsFired += 1;
         if (ships[row][column].isRealShip() && !ships[row][column].isSunk()){
             this.hitCount += 1;
-            ships[row][column].
+            ships[row][column].shootAt(row, column);
             return true;
         }
         return false;
@@ -75,5 +79,17 @@ public class Ocean {
             return false;
         }
         return true;
+    }
+
+    public int getHitCount() {
+        return hitCount;
+    }
+
+    public int getShipsSunk() {
+        return shipsSunk;
+    }
+
+    public Ship[][] getShipArray(){
+        return this.ships;
     }
 }
