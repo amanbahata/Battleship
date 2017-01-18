@@ -1,5 +1,6 @@
 package battleship;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -37,10 +38,90 @@ public class Ocean {
     }
 
 
-//    public void placeAllShipsRandomly(){
-//        Random random = new Random();
+    public void placeAllShipsRandomly(){
+
+        Ship[] shipType = {new BattleShip(), new BattleShip()};
+        int shipTypeCounter = 0;
+        Random random = new Random();
+
+        while(shipTypeCounter < shipType.length){
+
+            shipType[shipTypeCounter].setHorizontal(random.nextBoolean());
+
+
+            if (shipType[shipTypeCounter].isHorizontal()){
+
+                System.out.println(shipType[shipTypeCounter] + " is horizontal");
+
+                shipType[shipTypeCounter].setBowRow(random.nextInt(10));
+                shipType[shipTypeCounter].setBowColumn(random.nextInt(7));
+
+
+            }else{
+                System.out.println(shipType[shipTypeCounter] + " is vertical");
+
+
+            }
+        }
+
+        // placing a battle ship
+        Ship battleShip1 = new BattleShip();
+        battleShip1.setHorizontal(random.nextBoolean());
+
+        if (battleShip1.isHorizontal()){
+            System.out.println("Battle ship is horizontal");
+
+            battleShip1.setBowRow(random.nextInt(10));
+            battleShip1.setBowColumn(random.nextInt(7));
+
+            int row = battleShip1.getBowRow();
+            int column = battleShip1.getBowColumn();
+
+
+            for (int i=0; i<battleShip1.getLength(); i++) {
+                ships[row][column + i] = battleShip1;
+            }
+
+            System.out.println("row: " + battleShip1.getBowRow());
+            System.out.println("column: " + battleShip1.getBowColumn());
+
+//            battleShip1.setBowRow(random.nextInt(10));
+//            battleShip1.setBowColumn(random.nextInt(7));
 //
-//    }
+//            for (int i=battleShip1.getBowColumn(); i< battleShip1.getLength(); i++){
+//                System.out.println(battleShip1.getBowRow() + " " + i);
+//                ships[battleShip1.getBowRow()][i] = battleShip1 ;
+//            }
+        }
+        else {
+            System.out.println("Battle ship is vertical");
+
+
+            battleShip1.setBowRow(random.nextInt(7));
+            battleShip1.setBowColumn(random.nextInt(10));
+
+
+            int row = battleShip1.getBowRow();
+            int column = battleShip1.getBowColumn();
+
+             for (int i = 0; i< battleShip1.getLength(); i++) {
+                 ships[row + i][column] = battleShip1;
+             }
+
+            System.out.println("row: " + battleShip1.getBowRow());
+            System.out.println("column: " + battleShip1.getBowColumn());
+
+//            battleShip1.setBowRow(random.nextInt(7));
+//            battleShip1.setBowColumn(random.nextInt(10));
+//            for (int i = battleShip1.getBowRow(); i < battleShip1.getLength(); i++) {
+//
+//                System.out.println(i + " " + battleShip1.getBowColumn());
+//
+//                ships[i][battleShip1.getBowColumn()] = battleShip1;
+//            }
+        }
+    }
+
 
     public boolean hasSunkShipAt(int row, int column){
         if (ships[row][column].isRealShip()){
