@@ -95,7 +95,7 @@ public class Ocean {
 
 
     public boolean hasSunkShipAt(int row, int column){
-        if (ships[row][column].isRealShip()){
+        if (ships[row][column].isSunk()){
             return true;
         }
         return false;
