@@ -47,7 +47,7 @@ class OceanTest {
 
         for (int i=0; i< ships.length; i++){
             for (int j=0; j< ships[i].length; j++){
-                System.out.print(" " + ships[i][j].getShipType());
+                System.out.print("   " + ships[i][j].getShipType());
 //                assertEquals("Empty sea", ships[i][j].getShipType() );
             }
             System.out.println();
