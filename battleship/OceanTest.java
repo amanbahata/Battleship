@@ -12,14 +12,10 @@ class OceanTest {
     Ocean ocean = new Ocean();
 
 
-    @Test
-    public void testOceanConstructor1(){
-        assertEquals("Empty sea", ocean.getShipLocation().toString());
-    }
 
     @Test
     public void testIsOccupied(){
-        assertEquals(true, ocean.isOccupied(5,0));
+        assertEquals(false, ocean.isOccupied(5,0));
     }
 
     @Test

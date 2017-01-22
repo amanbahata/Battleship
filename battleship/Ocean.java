@@ -1,6 +1,5 @@
 package battleship;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -29,70 +28,58 @@ public class Ocean {
 
     }
 
-    public Ship getShipLocation(){
-        return ships[5][0];
-    }
 
     public int getShotsFired() {
         return shotsFired;
     }
 
+    private boolean placeSingleShip(Ship ship, int row, int column){
 
-    public void placeAllShipsRandomly() {
+        if (!isOccupied(row, column)) {
+            ship.setBowRow(row);
+            ship.setBowColumn(column);
 
-
-// List of ships to be placed randomly
-        Ship[] shipType = {
-                new BattleShip(),
-                new Cruiser(), new Cruiser(),
-                new Destroyer(), new Destroyer(), new Destroyer(),
-                new Submarine(), new Submarine(), new Submarine(), new Submarine()
-        };
-
-        int shipTypeCounter = 0;               // keeps count of the ships that have been placed already
-        Random random = new Random();           // it will be user to generate random positions
-
-        while (shipTypeCounter < shipType.length) {
-
-            shipType[shipTypeCounter].setHorizontal(random.nextBoolean());       // Give the ship a random orientation
-
-
-            if (shipType[shipTypeCounter].isHorizontal()) {          // check the orientation of the ship
-
-   //             System.out.println(shipType[shipTypeCounter].getShipType() + " is horizontal");
-
-                shipType[shipTypeCounter].setBowRow(random.nextInt(10));        // assign random row
-                shipType[shipTypeCounter].setBowColumn(random.nextInt(7));      //assign random column
-
-                int xCoord = shipType[shipTypeCounter].getBowRow();
-                int yCoord = shipType[shipTypeCounter].getBowColumn();
-
-                for (int i = 0; i < shipType[shipTypeCounter].getLength(); i++) {       // place the created ship in the ships[][]
-                    ships[xCoord][yCoord + i] = shipType[shipTypeCounter];
+            if (ship.isHorizontal()){
+                for (int i = column + 1; i<=ship.getLength(); i++) {
+                    ships[row][i] = ship;
                 }
-                shipTypeCounter++;
-
-            } else {
-  //              System.out.println(shipType[shipTypeCounter].getShipType() + " is vertical");
-
-                shipType[shipTypeCounter].setBowRow(random.nextInt(7));
-                shipType[shipTypeCounter].setBowColumn(random.nextInt(10));
-
-
-                int xCoord = shipType[shipTypeCounter].getBowRow();
-                int yCoord = shipType[shipTypeCounter].getBowColumn();
-
-                for (int i = 0; i < shipType[shipTypeCounter].getLength(); i++) {
-                    ships[xCoord + i][yCoord] = shipType[shipTypeCounter];
+            }else{
+                for (int j= row + 1; j<=ship.getLength(); j++){
+                    ships[j][column] = ship;
                 }
-                shipTypeCounter++;
-
-
             }
+
+            return true;
         }
+        return false;
     }
 
 
+    public void placeAllShipsRandomly(){
+        int index = 0;
+        Ship[] shipTypes = {
+                new BattleShip(),
+                new Cruiser(), new Cruiser(),
+                new Destroyer(),new Destroyer(),new Destroyer(),
+                new Submarine(), new Submarine(), new Submarine(), new Submarine()
+        };
+
+        Random random = new Random();
+        int row, column;
+
+        while (index < shipTypes.length){
+
+            shipTypes[index].setHorizontal(random.nextBoolean());
+            row = random.nextInt(10);
+            column = random.nextInt(11 - shipTypes[index].getLength());
+
+            if (shipTypes[index].isHorizontal() && placeSingleShip(shipTypes[index], row, column)) {
+                index++;
+            }else if (!shipTypes[index].isHorizontal() && placeSingleShip(shipTypes[index], column, row)){
+                index++;
+            }
+        }
+    }
 
     public boolean hasSunkShipAt(int row, int column){
         if (ships[row][column].isSunk()){
@@ -119,20 +106,14 @@ public class Ocean {
 
 
     public boolean isOccupied(int row, int column){
-        if (this.ships[row][column].getShipType().equals("Empty sea")){
+        if ( ships[row][column].getShipType().equals("Empty sea")){
             return false;
         }
         return true;
     }
 
 
-// Provides an implementation of equals()
-    private boolean isEqual(Object obj){
-        if (!(obj instanceof EmptySea)){
-            return false;
-        }
-        return true;
-    }
+
 
     public int getHitCount() {
         return hitCount;
