@@ -18,18 +18,20 @@ public abstract class Ship {
     public boolean shootAt(int row, int column){
         int placeHolder1;
         int placeHolder2;
+        int placeHolder3;
         if (this.horizontal) {
             placeHolder1 = this.bowRow ;
             placeHolder2 = bowColumn ;
+            placeHolder3 = column;
         }else{
             placeHolder1 = this.bowColumn;
             placeHolder2 = bowRow;
+            placeHolder3 = row;
         }
 
-
-        if ((row == placeHolder1) && column >= placeHolder2 & column <= (placeHolder2 + length)-1) {
+        if ((placeHolder3 == placeHolder1) && placeHolder3 >= placeHolder2 & placeHolder3 <= (placeHolder2 + length)-1) {
             if(!isSunk()){
-                int hitPositionOfTheShip = (placeHolder2 + length - 1) - column ;
+                int hitPositionOfTheShip = (placeHolder2 + length - 1) - placeHolder3 ;
                 hit[hitPositionOfTheShip] = true;
                 return true;
             }
