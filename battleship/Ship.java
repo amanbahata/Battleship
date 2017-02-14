@@ -16,23 +16,22 @@ public abstract class Ship {
     }
 
     public boolean shootAt(int row, int column){
-
+        int placeHolder1;
+        int placeHolder2;
         if (this.horizontal) {
-            if ((row == this.bowRow) && column >= bowColumn & column <= (bowColumn + length)-1) {
-                if(!isSunk()){
-                    int hitPositionOfTheShip = (bowColumn + length - 1) - column ;
-                    hit[hitPositionOfTheShip] = true;
-                    return true;
-                }
-            }
+            placeHolder1 = this.bowRow ;
+            placeHolder2 = bowColumn ;
+        }else{
+            placeHolder1 = this.bowColumn;
+            placeHolder2 = bowRow;
         }
-        else if (!this.horizontal) {
-            if ((column == this.bowColumn) && row >= bowRow & row <= (bowRow + length)-1) {
-                if(!isSunk()){
-                    int hitPositionOfTheShip = (bowRow + length - 1) - row ;
-                    hit[hitPositionOfTheShip] = true;
-                    return true;
-                }
+
+
+        if ((row == placeHolder1) && column >= placeHolder2 & column <= (placeHolder2 + length)-1) {
+            if(!isSunk()){
+                int hitPositionOfTheShip = (placeHolder2 + length - 1) - column ;
+                hit[hitPositionOfTheShip] = true;
+                return true;
             }
         }
         return false;
