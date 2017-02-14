@@ -28,58 +28,88 @@ public class Ocean {
 
     }
 
+    public void placeAllShipsRandomly() {
+        Random positionGenerator = new Random();
+        Ship[] shipsContainer = {
+                new BattleShip(),
+                new Cruiser(), new Cruiser(),
+                new Destroyer(), new Destroyer(), new Destroyer(),
+                new Submarine(), new Submarine(), new Submarine(), new Submarine()
+        };
+
+        for (Ship ship : shipsContainer){
+            boolean placed = false;
+            while(!placed){
+                ship.setBowRow(positionGenerator.nextInt(ships.length));
+                ship.setBowColumn(positionGenerator.nextInt(ships[0].length));
+                ship.setHorizontal(positionGenerator.nextBoolean());
+
+                if (ship.isHorizontal()){
+                    // check if there is room horizontally to place the ship
+                    boolean thereIsSpace = true;
+                    for (int i = 0; i < ship.getLength(); i ++){
+                        if (ship.getBowColumn() + i >= ships[0].length){
+                            thereIsSpace = false;
+                            break;
+                        }
+                        //check if there is room vertically to place the ship
+                        if (isOccupied(ship.getBowRow(), ship.getBowColumn() + i)) {
+                            thereIsSpace = false;
+                            break;
+                        }
+
+                    }
+                    if (!thereIsSpace){
+                        //there is no room to place the ship so let's start over
+                        continue;
+                    }
+                    for (int i = 0; i < ship.getLength(); i ++){
+                        ships[ship.getBowRow()][ship.getBowColumn() + i] = ship;
+                        System.out.println(ship.getShipType() + " row: "+ ship.getBowRow()+ " col: " +ship.getBowColumn());
+                        System.out.println();
+
+                    }
+                    placed = true;
+                }else{
+                    //we will check when the ship is vertically oriented
+                    boolean thereIsSpace = true;
+                    for (int i = 0; i < ship.getLength(); i ++){
+                        if (ship.getBowRow() + i >= ships.length){
+                            thereIsSpace = false;
+                            break;
+                        }
+                        if (isOccupied(ship.getBowRow() + i, ship.getBowColumn())){
+                            thereIsSpace = false;
+                            break;
+                        }
+                    }
+                    if (!thereIsSpace){
+                        continue;
+                    }
+                    for (int i = 0; i < ship.getLength(); i ++){
+                        ships[ship.getBowRow() + i][ship.getBowColumn()] = ship;
+
+                        System.out.println(ship.getShipType() + " row: "+ ship.getBowRow()+ " col: " +ship.getBowColumn());
+                        System.out.println();
+                    }
+                    placed = true;
+                }
+
+            }
+        }
+    }
+
+
+
+
+
 
     public int getShotsFired() {
         return shotsFired;
     }
 
-    private boolean placeSingleShip(Ship ship, int row, int column){
-
-        if (!isOccupied(row, column)) {
-            ship.setBowRow(row);
-            ship.setBowColumn(column);
-
-            if (ship.isHorizontal()){
-                for (int i = column + 1; i<=ship.getLength(); i++) {
-                    ships[row][i] = ship;
-                }
-            }else{
-                for (int j= row + 1; j<=ship.getLength(); j++){
-                    ships[j][column] = ship;
-                }
-            }
-
-            return true;
-        }
-        return false;
-    }
 
 
-    public void placeAllShipsRandomly(){
-        int index = 0;
-        Ship[] shipTypes = {
-                new BattleShip(),
-                new Cruiser(), new Cruiser(),
-                new Destroyer(),new Destroyer(),new Destroyer(),
-                new Submarine(), new Submarine(), new Submarine(), new Submarine()
-        };
-
-        Random random = new Random();
-        int row, column;
-
-        while (index < shipTypes.length){
-
-            shipTypes[index].setHorizontal(random.nextBoolean());
-            row = random.nextInt(10);
-            column = random.nextInt(11 - shipTypes[index].getLength());
-
-            if (shipTypes[index].isHorizontal() && placeSingleShip(shipTypes[index], row, column)) {
-                index++;
-            }else if (!shipTypes[index].isHorizontal() && placeSingleShip(shipTypes[index], column, row)){
-                index++;
-            }
-        }
-    }
 
     public boolean hasSunkShipAt(int row, int column){
         if (ships[row][column].isSunk()){
