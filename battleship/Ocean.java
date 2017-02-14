@@ -25,7 +25,6 @@ public class Ocean {
                 ships[i][j] = new EmptySea();
             }
         }
-
     }
 
     public void placeAllShipsRandomly() {
@@ -57,7 +56,6 @@ public class Ocean {
                             thereIsSpace = false;
                             break;
                         }
-
                     }
                     if (!thereIsSpace){
                         //there is no room to place the ship so let's start over
@@ -65,9 +63,6 @@ public class Ocean {
                     }
                     for (int i = 0; i < ship.getLength(); i ++){
                         ships[ship.getBowRow()][ship.getBowColumn() + i] = ship;
-                        System.out.println(ship.getShipType() + " row: "+ ship.getBowRow()+ " col: " +ship.getBowColumn());
-                        System.out.println();
-
                     }
                     placed = true;
                 }else{
@@ -88,15 +83,39 @@ public class Ocean {
                     }
                     for (int i = 0; i < ship.getLength(); i ++){
                         ships[ship.getBowRow() + i][ship.getBowColumn()] = ship;
-
-                        System.out.println(ship.getShipType() + " row: "+ ship.getBowRow()+ " col: " +ship.getBowColumn());
-                        System.out.println();
                     }
                     placed = true;
                 }
-
             }
         }
+    }
+
+
+    public boolean isOccupied(int row, int column){
+        if ( ships[row][column].getShipType().equals("Empty sea")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean hasSunkShipAt(int row, int column){
+        if (ships[row][column].isSunk()){
+            return true;
+        }
+        return false;
+    }
+
+    public String getShipTypeAt(int row, int column){
+        return ships[row][column].getShipType();
+    }
+
+    public boolean shootAt(int row, int column){
+        this.shotsFired += 1;
+        if (ships[row][column].isRealShip() && !ships[row][column].isSunk()){
+            this.hitCount += 1;
+            return ships[row][column].shootAt(row, column);
+        }
+        return false;
     }
 
 
@@ -111,36 +130,15 @@ public class Ocean {
 
 
 
-    public boolean hasSunkShipAt(int row, int column){
-        if (ships[row][column].isSunk()){
-            return true;
-        }
-        return false;
-    }
 
 
 
-    public boolean shootAt(int row, int column){
-        this.shotsFired += 1;
-        if (ships[row][column].isRealShip() && !ships[row][column].isSunk()){
-            this.hitCount += 1;
-            ships[row][column].shootAt(row, column);
-            return true;
-        }
-        return false;
-    }
-
-    public String getShipTypeAt(int row, int column){
-        return ships[row][column].getShipType();
-    }
 
 
-    public boolean isOccupied(int row, int column){
-        if ( ships[row][column].getShipType().equals("Empty sea")){
-            return false;
-        }
-        return true;
-    }
+
+
+
+
 
 
 
