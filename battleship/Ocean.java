@@ -136,7 +136,32 @@ public class Ocean {
         return shipsSunk == numberOfShips;
     }
 
+    public void print(){
+        String locationIndication = ".";
+        System.out.print(" ");
+        for (int k = 0; k < ships[0].length; k ++){
+            System.out.print(k);
+        }
+        System.out.println();
+        for (int i = 0; i < ships.length; i ++){
+            System.out.print(i);
+            for (int j = 0; j < ships[0].length; j ++){
 
+
+             // ============ TO DO ================
+                if (ships[i][j].){
+                    locationIndication = ""
+                }
+
+
+
+
+                System.out.print(locationIndication);
+
+            }
+            System.out.println();
+        }
+    }
 
 
 
