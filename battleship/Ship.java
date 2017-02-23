@@ -6,7 +6,12 @@ package battleship;
 public abstract class Ship {
 
     /**
-     *
+     * A ships instance variables
+     * @bowRow the row (0 to 9) which contains the bow (front) of the ship.
+     * @bowColumn the column (0 to 9) which contains the bow of the ship.
+     * @length the number of squares occupied by the ship.
+     * @horizontal set to true if the ship occupies a single row.
+     * @hit an array of booleans telling whether that part of the ship has been hit.
      */
 
     private int bowRow;
@@ -17,8 +22,9 @@ public abstract class Ship {
 
 
     /**
+     *  Ship constructor
      *
-     * @param length
+     * @param length the number of squares occupied by the ship.
      */
 
     public Ship(int length){
@@ -27,27 +33,30 @@ public abstract class Ship {
     }
 
     /**
-     *
-     * @param row
-     * @param column
-     * @return
+     * Marks the part of the hit array to indicate that the ship has been hit
+     * at the position the ship is occupying
+     * @param row  the horizontal position of the ship
+     * @param column vertical position of the ship
+     * @return true if is marked as hit, false otherwise
      */
 
     public boolean shootAt(int row, int column){
-        int hitPosition;
+        int hitPosition;                            // location in the hit array
         if (isHorizontal()) {
             hitPosition = column - bowColumn;
             hit[hitPosition] = true;
             return true;
+        }else if (!isHorizontal()) {
+            hitPosition = row - bowRow;
+            hit[hitPosition] = true;
+            return true;
         }
-        hitPosition = row - bowRow;
-        hit[hitPosition] = true;
-        return true;
+        return false;
     }
 
     /**
-     *
-     * @return
+     * Check checks if every part of the ship has been hit
+     * @return boolean.
      */
 
     public boolean isSunk(){
@@ -59,9 +68,11 @@ public abstract class Ship {
         return true;
     }
 
+
     /**
-     *
-     * @return
+     * Checks if the ship is real ship. This method eases the development of
+     * of classes for real ships.
+     * @return true
      */
 
     public boolean isRealShip(){
@@ -69,15 +80,15 @@ public abstract class Ship {
     }
 
     /**
-     *
-     * @return
+     * Abstract method that returns the type of the ship
+     * (to be implemented by sub classes)
      */
 
     public abstract String getShipType();
 
     /**
-     *
-     * @return
+     * Instance methods for accessing instance variables.
+     * @return horizontal
      */
 
     public boolean isHorizontal(){
@@ -85,8 +96,7 @@ public abstract class Ship {
     }
 
     /**
-     *
-     * @return
+     * @return bowRow.
      */
 
     public int getBowRow() {
@@ -94,17 +104,7 @@ public abstract class Ship {
     }
 
     /**
-     *
-     * @param row
-     */
-
-    public void setBowRow(int row) {
-        this.bowRow = row;
-    }
-
-    /**
-     *
-     * @return
+     * @return bowColumn.
      */
 
     public int getBowColumn() {
@@ -112,17 +112,7 @@ public abstract class Ship {
     }
 
     /**
-     *
-     * @param column
-     */
-
-    public void setBowColumn(int column) {
-        this.bowColumn = column;
-    }
-
-    /**
-     *
-     * @return
+     * @return length number of squares the ship occupies.
      */
 
     public int getLength() {
@@ -130,8 +120,24 @@ public abstract class Ship {
     }
 
     /**
-     *
-     * @param horizontal
+     * Instance methods for mutating instance variables.
+     * @param row horizontal value to set the front of the ship.
+     */
+
+    public void setBowRow(int row) {
+        this.bowRow = row;
+    }
+
+    /**
+     * @param column vertical value to set the front of the ship.
+     */
+
+    public void setBowColumn(int column) {
+        this.bowColumn = column;
+    }
+
+    /**
+     * @param horizontal orientation of the ship.
      */
 
     public void setHorizontal(boolean horizontal) {
@@ -139,10 +145,10 @@ public abstract class Ship {
     }
 
     /**
-     *
-     * @param row
-     * @param column
-     * @return
+     * Determines if the ship has been hit at the location
+     * @param row horizontal position of the target.
+     * @param column vertical position of the target.
+     * @return true has been hit, false otherwise.
      */
 
     public boolean isHitAt(int row , int column){
