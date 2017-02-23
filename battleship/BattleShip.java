@@ -5,9 +5,18 @@ package battleship;
  */
 public class BattleShip extends Ship {
 
+    /**
+     *
+     */
+
     public BattleShip() {
         super(4);
     }
+
+    /**
+     *
+     * @return
+     */
 
     @Override
     public String getShipType() {

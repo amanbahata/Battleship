@@ -5,24 +5,38 @@ package battleship;
  */
 public class EmptySea extends Ship {
 
+    /**
+     *
+     */
+
     public EmptySea() {
         super(1);
     }
 
-//    @Override
-//    public boolean shootAt(int row, int column){
-//
-//    }
+    /**
+     *
+     * @return
+     */
 
     @Override
     public boolean isRealShip(){
         return false;
     }
 
+    /**
+     *
+     * @return
+     */
+
     @Override
     public boolean isSunk(){
         return false;
     }
+
+    /**
+     *
+     * @return
+     */
 
     @Override
     public String getShipType() {
