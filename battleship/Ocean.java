@@ -7,15 +7,25 @@ import java.util.Random;
  */
 public class Ocean {
 
-    // Size of the ocean horizontally and vertically
+    /**
+     * Instance variables
+     *
+     * - OCEANLENGTH row size of the ocean array.
+     * - OCEANHEIGHT column size of the ocean array.
+     * - NUMBEROFSHIPS the total number of ships.
+     * - ships array to quickly determine which ship is at in any given location
+     * - shotsFired the total numbers of shots fired by the user
+     * - hitCount the number of times a shot hit a ship.
+     * - shipsSunk the number of ships sunk
+     */
+
     private final int OCEANLENGTH = 10;
     private final int OCEANHEIGHT = 10;
-
-
-    private Ship [][] ships;    // the ocean represented as and array of 10 x 10
-    private int shotsFired;     // contains the total number of shots fired during the game
-    private int hitCount;       // contains the total of successful hits
-    private int shipsSunk;      // contains the number sunk ships
+    private final int NUMBEROFSHIPS = 10;
+    private Ship [][] ships;
+    private int shotsFired;
+    private int hitCount;
+    private int shipsSunk;
 
 
     /**
@@ -32,7 +42,7 @@ public class Ocean {
     }
 
     /**
-     *  Places all ships randomly on the ocean.
+     *  Places all ships randomly on the initially empty ocean.
      */
 
     private void fillShipsArrayWithEmptySeas(){
@@ -51,8 +61,9 @@ public class Ocean {
 
 
     /**
-     * Places all ten ships randomly on the initially empty ocean.
-     * It places larger ships before smaller ones
+     * Places all ten ships randomly on the on the ocean.
+     * It places larger ships before smaller ones. It checks if the new ship
+     * overlaps, touch another ship or sticks out of the defined array.
      */
 
     public void placeAllShipsRandomly() {
@@ -97,13 +108,10 @@ public class Ocean {
                         //there is no room to place the ship so let's start over
                         continue;
                     }
-
                     for (int i = 0; i < ship.getLength(); i ++){
                         ships[ship.getBowRow()][ship.getBowColumn() + i] = ship;
                     }
-
                     placed = true;
-
                 }else{
                     //we will check when the ship is vertically oriented
                     boolean thereIsSpace = true;
@@ -118,15 +126,12 @@ public class Ocean {
                             break;
                         }
                     }
-
                     if (!thereIsSpace){
                         continue;
                     }
-
                     for (int i = 0; i < ship.getLength(); i ++){
                         ships[ship.getBowRow() + i][ship.getBowColumn()] = ship;
                     }
-
                     placed = true;
                 }
             }
@@ -134,10 +139,10 @@ public class Ocean {
     }
 
     /**
-     *  Checks if the given location contains a ship
-     * @param row
-     * @param column
-     * @return  boolean
+     * Checks if the given location contains a ship
+     * @param row horizontal position to check
+     * @param column vertical position to check
+     * @return  boolean true if the given location contains a ship, false otherwise
      */
 
     public boolean isOccupied(int row, int column){
@@ -148,10 +153,10 @@ public class Ocean {
     }
 
     /**
-     *
-     * @param row
-     * @param column
-     * @return
+     * Checks weather the shot has sunk a ship or not
+     * @param row horizontal position to check
+     * @param column vertical position to check
+     * @return true if the shot has sank the ship, false otherwise
      */
 
     public boolean hasSunkShipAt(int row, int column){
@@ -163,15 +168,25 @@ public class Ocean {
     }
 
     /**
-     *
-     * @param row
-     * @param column
-     * @return
+     * Returns the ship type at a given location
+     * @param row horizontal position to check
+     * @param column vertical position to check
+     * @return the ship type at the location
      */
 
     public String getShipTypeAt(int row, int column){
         return ships[row][column].getShipType();
     }
+
+    /**
+     * Shoots at the part of the ship at that location.
+     * In addition the method updates the number of shots that have been fired and
+     * the number of hits.
+     * @param row location of the position
+     * @param column location of the position
+     * @return true if the given location contains a real ship and still afloat,
+     * false otherwise.
+     */
 
     public boolean shootAt(int row, int column) {
         this.shotsFired += 1;
@@ -184,8 +199,8 @@ public class Ocean {
     }
 
     /**
-     *
-     * @return
+     * Retrieves the number of the shots that have been by the user
+     * @return number of the shots fired
      */
 
     public int getShotsFired() {
@@ -193,8 +208,8 @@ public class Ocean {
     }
 
     /**
-     *
-     * @return
+     * Retrieves the number of hits recorded. All hits are counted.
+     * @return the number of hits
      */
 
     public int getHitCount() {
@@ -202,8 +217,8 @@ public class Ocean {
     }
 
     /**
-     *
-     * @return
+     * Retrieves the number of ships that have been sunk by the user.
+     * @return number of ships sunk
      */
 
     public int getShipsSunk() {
@@ -211,21 +226,26 @@ public class Ocean {
     }
 
     /**
-     *
-     * @return
+     * Checks if all ships have been sunk by user and is game over
+     * @return true if the number of sunk ships is equal to the available ships, false otherwise.
      */
 
     public boolean isGameOver() {
-        int numberOfShips = 10;
-        return this.shipsSunk == numberOfShips;
+        return this.shipsSunk == this.NUMBEROFSHIPS;
     }
 
     /**
-     *
+     * Prints the ocean in stdout.To aid the user
+     * - row numbers are displayed along the left edge of the array.
+     * - column numbers are displayed along the top.
+     * - the top left corner is indicated as (0,0)
+     * - "S" indicates a location fired upon where a real ship is hit.
+     * - "-" indicates a location fired upon and nothing was found.
+     * - "X" indicates a location containing a sunken ship.
+     * - "." indicates a location never fired upon.
      */
 
     public void print(){
-      //  String locationIndication = ".";
         System.out.print(" ");
         for (int k = 0; k < ships[0].length; k ++){
             System.out.print(k);
@@ -235,7 +255,6 @@ public class Ocean {
             System.out.print(i);
                 for (int j = 0; j < ships[0].length; j++) {
                     Ship ship1 = ships[i][j];
-
                     if (ship1.isRealShip()){
                         if (ship1.isSunk()){
                             System.out.print("X");
@@ -246,15 +265,5 @@ public class Ocean {
                 }
             System.out.println();
         }
-    }
-
-
-    /**
-     *
-     * @return
-     */
-
-    public Ship[][] getShipArray(){
-        return this.ships;
     }
 }

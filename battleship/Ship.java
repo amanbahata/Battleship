@@ -7,11 +7,11 @@ public abstract class Ship {
 
     /**
      * Instance variables of a ship.
-     * @bowRow the row (0 to 9) which contains the bow (front) of the ship.
-     * @bowColumn the column (0 to 9) which contains the bow of the ship.
-     * @length the number of squares occupied by the ship.
-     * @horizontal set to true if the ship occupies a single row.
-     * @hit an array of booleans telling whether that part of the ship has been hit.
+     * -bowRow the row (0 to 9) which contains the bow (front) of the ship.
+     * -bowColumn the column (0 to 9) which contains the bow of the ship.
+     * -length the number of squares occupied by the ship.
+     * -horizontal set to true if the ship occupies a single row.
+     * -hit an array of booleans telling whether that part of the ship has been hit.
      */
 
     private int bowRow;
