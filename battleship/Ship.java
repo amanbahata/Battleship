@@ -6,7 +6,7 @@ package battleship;
 public abstract class Ship {
 
     /**
-     * A ships instance variables
+     * Instance variables of a ship.
      * @bowRow the row (0 to 9) which contains the bow (front) of the ship.
      * @bowColumn the column (0 to 9) which contains the bow of the ship.
      * @length the number of squares occupied by the ship.
@@ -19,7 +19,6 @@ public abstract class Ship {
     private int length;
     private boolean horizontal;
     private boolean [] hit;
-
 
     /**
      *  Ship constructor
@@ -68,7 +67,6 @@ public abstract class Ship {
         return true;
     }
 
-
     /**
      * Checks if the ship is real ship. This method eases the development of
      * of classes for real ships.
@@ -88,6 +86,8 @@ public abstract class Ship {
 
     /**
      * Instance methods for accessing instance variables.
+     *
+     * Gets information about a ships' horizontal orientation
      * @return horizontal
      */
 
@@ -96,6 +96,7 @@ public abstract class Ship {
     }
 
     /**
+     * Gets information about the front row of the ship
      * @return bowRow.
      */
 
@@ -104,6 +105,7 @@ public abstract class Ship {
     }
 
     /**
+     * Gets information about the front column of the ship
      * @return bowColumn.
      */
 
@@ -112,6 +114,7 @@ public abstract class Ship {
     }
 
     /**
+     * Gets information about the length of the ship
      * @return length number of squares the ship occupies.
      */
 
@@ -121,6 +124,8 @@ public abstract class Ship {
 
     /**
      * Instance methods for mutating instance variables.
+     *
+     * Mutates the front row of the ship
      * @param row horizontal value to set the front of the ship.
      */
 
@@ -129,6 +134,7 @@ public abstract class Ship {
     }
 
     /**
+     * Mutates the front column of the ship
      * @param column vertical value to set the front of the ship.
      */
 
@@ -137,7 +143,8 @@ public abstract class Ship {
     }
 
     /**
-     * @param horizontal orientation of the ship.
+     * Mutates the horizontal of the ship
+     * @param horizontal orientation.
      */
 
     public void setHorizontal(boolean horizontal) {
@@ -157,5 +164,4 @@ public abstract class Ship {
         }
         return hit[row - bowRow];
     }
-
 }
