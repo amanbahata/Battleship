@@ -88,16 +88,17 @@ public class Ocean {
                 ship.setBowColumn(positionGenerator.nextInt(ships[0].length - 1));
                 ship.setHorizontal(positionGenerator.nextBoolean());
 
+                //variable that keeps track of the presence of space
+                boolean thereIsSpace = true;
+
                 // check if a ship is assigned a horizontal position
                 if (ship.isHorizontal()){
                     // check if there is room vertically to place the ship
-                    boolean thereIsSpace = true;
                     for (int i = 0; i < ship.getLength(); i ++){
-                        if (ship.getBowColumn() + i >= ships[0].length){
+                        if (ship.getBowColumn() + i >= OCEANLENGTH){
                             thereIsSpace = false;
                             break;
                         }
-                        //check if there is room vertically to place the ship
                         if (isOccupied(ship.getBowRow(), ship.getBowColumn() + i)) {
                             thereIsSpace = false;
                             break;
@@ -114,10 +115,8 @@ public class Ocean {
                     placed = true;
                 }else{
                     //we will check when the ship is vertically oriented
-                    boolean thereIsSpace = true;
-
                     for (int i = 0; i < ship.getLength(); i ++){
-                        if (ship.getBowRow() + i >= ships.length){
+                        if (ship.getBowRow() + i >= OCEANHEIGHT){
                             thereIsSpace = false;
                             break;
                         }
