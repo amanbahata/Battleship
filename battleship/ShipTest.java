@@ -9,85 +9,134 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 class ShipTest {
 
-    Ship ship = new Ship(4) {
-        @Override
-        public String getShipType() {
-            return "Battleship";
-        }
-    };
+
+    /**
+     * It isn't sunk because it hasn't been shot.
+     */
 
     @Test
-    void shootAt() {
-        ship.setHorizontal(true);
-        ship.shootAt(0, 1);
-        assertTrue(ship.isHitAt(0,1));
-        assertFalse(ship.isHitAt(0,2));
+    void testIsSunk() {
+        assertFalse((new Destroyer()).isSunk());
+    }
 
+    /**
+     * Shoot the ship ar hit[2].
+     * The test should return true when the hit[2] is checked if it has been hit.
+     */
+
+    @Test
+    void testShootAt() {
+        Ship ship = new BattleShip();
+        ship.shootAt(2, 0);
+        assertTrue(ship.isHitAt(2,0));
+    }
+
+
+    /**
+     * It's false because an empty sea is not a ship
+     */
+
+    @Test
+    void testIsRealShip() {
+        assertFalse((new EmptySea()).isRealShip());
+    }
+
+    /**
+     * It should be true because  a BattleShip() is a "Battleship" type of ship
+     */
+
+    @Test
+    void testGetShipType() {
+        assertEquals("Battleship", (new BattleShip()).getShipType());
 
     }
 
+    /**
+     * The created ship object is vertical by default.
+     *  It should be false when checked if is horizontal
+     */
+
     @Test
-    void isSunk() {
-        assertFalse(ship.isSunk());
+    void testIsHorizontal() {
+        assertFalse((new BattleShip()).isHorizontal());
     }
 
+    /**
+     * The new ship has bowRow value of 0 when created,
+     * set that to 3. Now the ships' bowRow should be 3.
+     */
+
     @Test
-    void isRealShip() {
-        assertTrue(ship.isRealShip());
-        assertFalse(!ship.isRealShip());
+    void testGetBowRow() {
+        Ship ship = new BattleShip();
+        ship.setBowRow(3);
+        assertEquals(3, ship.getBowRow());
     }
 
-    @Test
-    void getShipType() {
-        assertEquals("Battleship", ship.getShipType());
+    /**
+     * The new ship has bowColumn value of 0 when created,
+     * set that to 5. Now the ships' bowRow should be 5.
+     */
 
+    @Test
+    void testGetBowColumn() {
+        Ship ship = new BattleShip();
+        ship.setBowColumn(5);
+        assertEquals(5, ship.getBowColumn());
     }
 
-    @Test
-    void isHorizontal() {
-        ship.setHorizontal(false);
-        assertEquals(false, ship.isHorizontal());
-    }
+    /**
+     * A BattleShip should have length 4
+     */
 
     @Test
-    void getBowRow() {
-        ship.setBowRow(0);
-        assertEquals(0, ship.getBowRow());
+    void testGetLength() {
+        assertEquals(4, (new BattleShip()).getLength());
     }
 
-    @Test
-    void getBowColumn() {
-        ship.setBowColumn(0);
-        assertEquals(0, ship.getBowColumn());
-    }
+    /**
+     * The bowRow should be 2 after setting it to 2
+     */
 
     @Test
-    void getLength() {
-        assertEquals(4, ship.getLength());
-    }
-
-    @Test
-    void setBowRow() {
+    void testSetBowRow() {
+        Ship ship = new BattleShip();
         ship.setBowRow(2);
         assertEquals(2, ship.getBowRow());
     }
 
-    @Test
-    void setBowColumn() {
-        ship.setBowColumn(2);
-        assertEquals(2, ship.getBowColumn());
-    }
+
+    /**
+     * The bowColumn should be 4 after setting it to 4
+     */
 
     @Test
-    void setHorizontal() {
+    void testSetBowColumn() {
+        Ship ship = new BattleShip();
+        ship.setBowColumn(4);
+        assertEquals(4, ship.getBowColumn());
+    }
+
+    /**
+     * Should be true because the orientation of the ship has been changed from vertical to horizontal
+     */
+
+    @Test
+    void testSetHorizontal() {
+        Ship ship = new Cruiser();
         ship.setHorizontal(true);
         assertTrue(ship.isHorizontal());
     }
 
+    /**
+     * Should be true because the ship has been hit at position 3
+     */
+
     @Test
-    void isHitAt() {
-        ship.shootAt(0,0);
-        assertTrue(ship.isHitAt(0,0));
+    void testIsHitAt() {
+        Ship ship = new BattleShip();
+        ship.shootAt(3,0);
+        assertTrue(ship.isHitAt(3,0));
     }
 
 }
