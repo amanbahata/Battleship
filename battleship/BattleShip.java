@@ -1,7 +1,7 @@
 package battleship;
 
 /**
- * The BattleShip type of Ship
+ * Represents a BattleShip type of Ship
  *
  * @author Aman Enghida
  */

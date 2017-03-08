@@ -1,7 +1,7 @@
 package battleship;
 
 /**
- * The Destroyer type of ship
+ * Represents a Destroyer type of ship
  * @author Aman Enghida
  */
 public class Destroyer extends Ship {

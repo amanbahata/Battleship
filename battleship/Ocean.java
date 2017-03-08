@@ -206,7 +206,7 @@ public class Ocean {
      */
 
     public int getShotsFired() {
-        return shotsFired;
+        return this.shotsFired;
     }
 
     /**
@@ -215,7 +215,7 @@ public class Ocean {
      */
 
     public int getHitCount() {
-        return hitCount;
+        return this.hitCount;
     }
 
     /**
@@ -224,7 +224,7 @@ public class Ocean {
      */
 
     public int getShipsSunk() {
-        return shipsSunk;
+        return this.shipsSunk;
     }
 
     /**
@@ -234,6 +234,16 @@ public class Ocean {
 
     public boolean isGameOver() {
         return this.shipsSunk == this.NUMBEROFSHIPS;
+    }
+
+    /**
+     * Returns the 10 x 10 array of ships.
+     * This method is needed for testing and returns the actual array of
+     * actual ships.
+     */
+
+    private Ship[][] getShipArray(){
+        return this.ships;
     }
 
     /**

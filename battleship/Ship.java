@@ -27,6 +27,9 @@ public abstract class Ship {
      */
 
     public Ship(int length){
+        if (length <=0 ){
+            throw new IllegalArgumentException("Illegal argument: The length of a ship can not be less than 1");
+        }
         this.length = length;
         this.hit = new boolean[length];
     }
@@ -60,7 +63,7 @@ public abstract class Ship {
 
     public boolean isSunk(){
         for (int i=0; i< hit.length; i++){
-            if (!hit[i]){
+            if (!this.hit[i]){
                 return false;
             }
         }
@@ -92,7 +95,7 @@ public abstract class Ship {
      */
 
     public boolean isHorizontal(){
-        return horizontal;
+        return this.horizontal;
     }
 
     /**
@@ -101,7 +104,7 @@ public abstract class Ship {
      */
 
     public int getBowRow() {
-        return bowRow;
+        return this.bowRow;
     }
 
     /**
@@ -110,7 +113,7 @@ public abstract class Ship {
      */
 
     public int getBowColumn() {
-        return bowColumn;
+        return this.bowColumn;
     }
 
     /**
@@ -119,7 +122,7 @@ public abstract class Ship {
      */
 
     public int getLength() {
-        return length;
+        return this.length;
     }
 
     /**

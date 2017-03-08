@@ -1,7 +1,7 @@
 package battleship;
 
 /**
- * The Cruiser type of Ship
+ * Represents a Cruiser type of Ship
  * @author Aman Enghida
  */
 public class Cruiser extends Ship {

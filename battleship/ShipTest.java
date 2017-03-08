@@ -142,4 +142,9 @@ class ShipTest {
         assertTrue(ship.isHitAt(3,0));
     }
 
+    @Test
+    void testGetShipArray(){
+
+    }
+
 }
