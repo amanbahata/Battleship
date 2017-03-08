@@ -7,6 +7,13 @@ package battleship;
 public class Destroyer extends Ship {
 
     /**
+     * Length of a Destroyer
+     */
+
+    private static int LENGTH = 2;
+
+
+    /**
      * Destroyer constructor
      * Calls Ship superclass with length 2, length of a destroyer ship.
      */

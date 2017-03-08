@@ -6,12 +6,19 @@ package battleship;
 public class EmptySea extends Ship {
 
     /**
+     * Length of each empty sea.
+     */
+
+    private static int LENGTH = 1;
+
+
+    /**
      * Cruiser constructor
      * Calls Ship superclass with length 1, length of an empty ship.
      */
 
     public EmptySea() {
-        super(1);
+        super(LENGTH);
     }
 
     /**

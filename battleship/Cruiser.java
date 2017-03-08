@@ -7,12 +7,19 @@ package battleship;
 public class Cruiser extends Ship {
 
     /**
+     * Length of a Cruiser
+     */
+
+    private static int LENGTH = 3;
+
+
+    /**
      * Cruiser constructor
      * Calls Ship superclass with length 3, length of a cruiser ship.
      */
 
     public Cruiser(){
-        super(3);
+        super(LENGTH);
     }
 
     /**

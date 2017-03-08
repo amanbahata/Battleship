@@ -8,12 +8,19 @@ package battleship;
 public class Submarine extends Ship {
 
     /**
+     * Length of a Submarine
+     */
+
+    private static int LENGTH = 4;
+
+
+    /**
      *  Submarine constructor.
      *  Calls Ship superclass with length 1, length of a submarine.
      */
 
     public Submarine(){
-        super(1);
+        super(LENGTH);
     }
 
     /**
