@@ -5,8 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Created by aman1 on 23/02/2017.
+ * Test class for The Ship class
+ *
+ * @author Aman Enghida
  */
+
 class ShipTest {
 
 

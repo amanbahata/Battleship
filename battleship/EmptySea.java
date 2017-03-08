@@ -7,7 +7,6 @@ public class EmptySea extends Ship {
 
     /**
      * Cruiser constructor
-     *
      * Calls Ship superclass with length 1, length of an empty ship.
      */
 
@@ -16,8 +15,9 @@ public class EmptySea extends Ship {
     }
 
     /**
-     *
-     * @return
+     * This method overrides isRealShip() that is inherited from Ship.
+     * Checks if it is a real ship.
+     * @return false. The empty sea is not a real ship.
      */
 
     @Override
@@ -26,8 +26,8 @@ public class EmptySea extends Ship {
     }
 
     /**
-     *
-     * @return
+     * This method overrides isSunk() that is inherited from Ship.
+     * @return false indication that nothing was sunk.
      */
 
     @Override
@@ -37,8 +37,7 @@ public class EmptySea extends Ship {
 
     /**
      * Describes specific ship type.
-     *
-     * @return string describing specific ship type
+     * @return string describing specific ship type.
      */
 
     @Override

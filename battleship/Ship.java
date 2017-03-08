@@ -54,7 +54,7 @@ public abstract class Ship {
     }
 
     /**
-     * Check checks if every part of the ship has been hit
+     * Checks whether every part of the ship has been hit or not
      * @return boolean.
      */
 

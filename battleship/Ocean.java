@@ -3,8 +3,11 @@ package battleship;
 import java.util.Random;
 
 /**
- * Created by aman1 on 15/01/2017.
+ * The ocean that holds all the ships
+ *
+ * @author Aman Enghida
  */
+
 public class Ocean {
 
     /**
@@ -246,21 +249,25 @@ public class Ocean {
 
     public void print(){
         System.out.print(" ");
+
+        // Display the top numbers
         for (int k = 0; k < ships[0].length; k ++){
             System.out.print(k);
         }
         System.out.println();
+
+        // Display the side numbers together with the indicators
         for (int i = 0; i < ships.length; i ++){
             System.out.print(i);
                 for (int j = 0; j < ships[0].length; j++) {
                     Ship ship1 = ships[i][j];
-                    if (ship1.isRealShip()){
+                    if (ship1.isRealShip()){         // check first if there is a real ship at that position
                         if (ship1.isSunk()){
                             System.out.print("X");
                         }else
-                            System.out.print(ship1.isHitAt(i,j) ? "S" : ".");
+                            System.out.print(ship1.isHitAt(i,j) ? "S" : ".");   // check if that position has been hit and display accordingly
                     }else
-                        System.out.print(ship1.isHitAt(i, j) ? "-" : ".");
+                        System.out.print(ship1.isHitAt(i, j) ? "-" : ".");  // check if there is nothing there and display accordingly
                 }
             System.out.println();
         }
