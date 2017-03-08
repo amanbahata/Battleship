@@ -6,7 +6,9 @@ package battleship;
 public class BattleShip extends Ship {
 
     /**
+     *  BattleShip constructor.
      *
+     *  Calls Ship superclass with length 4, length of a battleship.
      */
 
     public BattleShip() {
@@ -14,8 +16,9 @@ public class BattleShip extends Ship {
     }
 
     /**
+     * Describes specific ship type.
      *
-     * @return
+     * @return string describing specific ship type
      */
 
     @Override

@@ -6,7 +6,9 @@ package battleship;
 public class EmptySea extends Ship {
 
     /**
+     * Cruiser constructor
      *
+     * Calls Ship superclass with length 1, length of an empty ship.
      */
 
     public EmptySea() {
@@ -34,12 +36,14 @@ public class EmptySea extends Ship {
     }
 
     /**
+     * Describes specific ship type.
      *
-     * @return
+     * @return string describing specific ship type
      */
 
     @Override
     public String getShipType() {
         return "Empty sea";
     }
+
 }
