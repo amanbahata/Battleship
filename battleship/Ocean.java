@@ -240,6 +240,7 @@ public class Ocean {
      * Returns the 10 x 10 array of ships.
      * This method is needed for testing and returns the actual array of
      * actual ships.
+     * @return actual array of ships.
      */
 
     private Ship[][] getShipArray(){
