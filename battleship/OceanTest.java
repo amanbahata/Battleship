@@ -69,7 +69,30 @@ class OceanTest {
 
     @Test
     void shootAt() {
+        // create buffer in memory of all the sent
+        ByteArrayOutputStream outputDots = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputDots));
+        Ocean ocean = new Ocean();
 
+        //shoot at the empty ocean in random coordinates
+        ocean.shootAt(7,7);
+        ocean.shootAt(5,5);
+        ocean.shootAt(3,3);
+        ocean.print();
+
+        // It should show shots on above coordinates with "-" sign
+        // since it is an empty ocean the sign should only be a "-" sign
+        assertEquals(" 0123456789\n" +
+                "0..........\n" +
+                "1..........\n" +
+                "2..........\n" +
+                "3...-......\n" +
+                "4..........\n" +
+                "5.....-....\n" +
+                "6..........\n" +
+                "7.......-..\n" +
+                "8..........\n" +
+                "9..........\n", outputDots.toString());
     }
 
     @Test
