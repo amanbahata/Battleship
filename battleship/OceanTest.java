@@ -1,6 +1,11 @@
 package battleship;
 
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -87,12 +92,29 @@ class OceanTest {
         Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
         ocean.shootAt(5,5);
-        assertFalse(ocean.isGameOver());
+        assertFalse(ocean.isGameOver());   // should be false because only one shot has been fired
     }
 
     @Test
     void print() {
+        // create buffer in memory of all the sent
+        ByteArrayOutputStream outputDots = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputDots));
+        Ocean ocean = new Ocean();
+        ocean.print();
 
+        // Check that it prints the square correctly together with the dots and grid numbers
+        assertEquals(" 0123456789\n" +
+                "0..........\n" +
+                "1..........\n" +
+                "2..........\n" +
+                "3..........\n" +
+                "4..........\n" +
+                "5..........\n" +
+                "6..........\n" +
+                "7..........\n" +
+                "8..........\n" +
+                "9..........\n", outputDots.toString());
     }
 
 }
