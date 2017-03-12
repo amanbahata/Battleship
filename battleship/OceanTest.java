@@ -12,10 +12,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class OceanTest {
 
 
+    @Test
+    void testOceanConstructor(){
+        Ocean ocean = new Ocean();
+
+        // Should check that all game variables are set to 0
+        assertEquals(0, ocean.getShotsFired());
+        assertEquals(0, ocean.getHitCount());
+        assertEquals(0,ocean.getShipsSunk());
+    }
 
 
     @Test
     void placeAllShipsRandomly() {
+        Ocean ocean = new Ocean();
+
+        System.out.println(ocean.getShipArray());
 
     }
 
