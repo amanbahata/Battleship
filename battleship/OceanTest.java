@@ -84,16 +84,14 @@ class OceanTest {
 
     @Test
     void isGameOver() {
-
+        Ocean ocean = new Ocean();
+        ocean.placeAllShipsRandomly();
+        ocean.shootAt(5,5);
+        assertFalse(ocean.isGameOver());
     }
 
     @Test
     void print() {
-
-    }
-
-    @Test
-    void getShipArray(){
 
     }
 
