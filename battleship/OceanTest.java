@@ -1,8 +1,6 @@
 package battleship;
 
 import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -97,11 +95,29 @@ class OceanTest {
 
     @Test
     void getShotsFired() {
+        Ocean ocean = new Ocean();
+        ocean.shootAt(4,4);
+        ocean.shootAt(4,7);
+        ocean.shootAt(5,3);
 
+        assertEquals(3, ocean.getShotsFired());
+        assertNotEquals(5, ocean.getShotsFired());
     }
 
     @Test
     void getHitCount() {
+        int totalLengthOfShipsInSquares = 4 + (3 * 2) + (2 * 3) + 4;
+        int oceanLenght = 10;
+        int oceanHeight = 10;
+        Ocean ocean = new Ocean();
+        ocean.placeAllShipsRandomly();
+        for(int i=0; i< oceanHeight; i++){
+            for (int j=0; j< oceanLenght; j++){
+                ocean.shootAt(i,j);
+            }
+        }
+
+        assertEquals(totalLengthOfShipsInSquares, ocean.getHitCount());
 
     }
 

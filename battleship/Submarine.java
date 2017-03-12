@@ -11,7 +11,7 @@ public class Submarine extends Ship {
      * Length of a Submarine
      */
 
-    private static int LENGTH = 4;
+    private static int LENGTH = 1;
 
 
     /**

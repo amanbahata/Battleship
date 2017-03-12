@@ -194,8 +194,10 @@ public class Ocean {
         this.shotsFired += 1;
         if (ships[row][column].isRealShip() && !ships[row][column].isSunk()) {
             this.hitCount += 1;
+            return ships[row][column].shootAt(row, column);
         }
-        return ships[row][column].shootAt(row, column);
+        ships[row][column].shootAt(row, column);
+        return false;
     }
 
     /**
