@@ -1,7 +1,6 @@
 package battleship;
 
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -24,26 +23,43 @@ class OceanTest {
 
 
     @Test
-    void placeAllShipsRandomly() {
+    void placeAllShipsRandomly(){
         Ocean ocean = new Ocean();
+        ocean.placeAllShipsRandomly();
 
-        System.out.println(ocean.getShipArray());
-
+        //Use the getShipArray method to retrieve the locations of all the ships
+        Ship[][] ships = ocean.getShipArray();
+        assertEquals(ocean.getShipTypeAt(0,0), ships[0][0].getShipType());
     }
 
     @Test
     void isOccupied() {
-
+        Ocean ocean = new Ocean();
+        assertFalse(ocean.isOccupied(5,5));  //should return false because all the ships haven't
+                                                            // been place randomly yet
     }
 
     @Test
     void hasSunkShipAt() {
+        Ocean ocean = new Ocean();
+        ocean.placeAllShipsRandomly();
 
+        ocean.shootAt(6,5);
+
+        if (ocean.isOccupied(6,5) && ocean.getShipTypeAt(6,5) != "Submarine"){
+            ocean.shootAt(6,5);
+            assertTrue(ocean.hasSunkShipAt(6,5));
+        }else{
+            assertFalse(ocean.hasSunkShipAt(6,5));
+        }
     }
 
     @Test
     void getShipTypeAt() {
-
+        Ocean ocean = new Ocean();
+        ocean.placeAllShipsRandomly();
+        Ship[][] ships = ocean.getShipArray();
+        assertEquals(ships[8][8].getShipType(), ocean.getShipTypeAt(8,8));
     }
 
     @Test
