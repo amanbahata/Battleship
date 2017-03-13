@@ -132,6 +132,7 @@ class OceanTest {
         for(int i=0; i< oceanHeight; i++){
             for (int j=0; j< oceanLength; j++){
                 ocean.shootAt(i,j);
+                ocean.hasSunkShipAt(i,j);
             }
         }
 
@@ -149,13 +150,17 @@ class OceanTest {
         Ocean ocean1  = new Ocean();
         ocean1.placeAllShipsRandomly();
 
+        Ship[][] ships = ocean1.getShipArray();
+
+        //Shoot at the squares programmatically and sink all the ships
         for(int i=0; i< 10; i++){
             for (int j=0; j< 10; j++){
-                ocean.shootAt(i,j);
+                ocean1.shootAt(i,j);
+                ocean1.hasSunkShipAt(i,j);
+
             }
         }
         assertTrue(ocean1.isGameOver());
-
     }
 
 

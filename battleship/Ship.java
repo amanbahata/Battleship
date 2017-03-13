@@ -1,8 +1,11 @@
 package battleship;
 
 /**
- * Created by aman1 on 15/01/2017.
+ * Ship Class, since we don't know which end of a ship is the bow and which the stern,
+ * we will consider all ships to be facing up or left.Other parts of the ship are higher numbered rows or columns
+ * @author  Aman Enghida on 15/01/2017.
  */
+
 public abstract class Ship {
 
     /**
