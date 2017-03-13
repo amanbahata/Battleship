@@ -3,6 +3,7 @@ package battleship;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,7 +50,7 @@ class OceanTest {
 
         ocean.shootAt(6,5);
 
-        if (ocean.isOccupied(6,5) && ocean.getShipTypeAt(6,5) != "Submarine"){
+        if (ocean.isOccupied(6,5) && !Objects.equals(ocean.getShipTypeAt(6, 5), "Submarine")){
             ocean.shootAt(6,5);
             assertTrue(ocean.hasSunkShipAt(6,5));
         }else{
@@ -149,8 +150,6 @@ class OceanTest {
 
         Ocean ocean1  = new Ocean();
         ocean1.placeAllShipsRandomly();
-
-        Ship[][] ships = ocean1.getShipArray();
 
         //Shoot at the squares programmatically and sink all the ships
         for(int i=0; i< 10; i++){
