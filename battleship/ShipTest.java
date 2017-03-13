@@ -51,7 +51,10 @@ class ShipTest {
     @Test
     void testGetShipType() {
         assertEquals("Battleship", (new BattleShip()).getShipType());
-
+        assertEquals("Destroyer", (new Destroyer()).getShipType());
+        assertEquals("Submarine", (new Submarine()).getShipType());
+        assertEquals("Empty sea", (new EmptySea()).getShipType());
+        assertEquals("Cruiser", (new Cruiser()).getShipType());
     }
 
     /**
