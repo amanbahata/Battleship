@@ -69,8 +69,8 @@ public abstract class Ship {
      */
 
     public boolean isSunk(){
-        for (int i=0; i< hit.length; i++){
-            if (!this.hit[i]){
+        for (boolean aHit : hit) {
+            if (!aHit) {
                 return false;
             }
         }
