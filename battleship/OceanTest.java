@@ -107,12 +107,12 @@ class OceanTest {
     @Test
     void getHitCount() {
         int totalLengthOfShipsInSquares = 4 + (3 * 2) + (2 * 3) + 4;
-        int oceanLenght = 10;
+        int oceanLength = 10;
         int oceanHeight = 10;
         Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
         for(int i=0; i< oceanHeight; i++){
-            for (int j=0; j< oceanLenght; j++){
+            for (int j=0; j< oceanLength; j++){
                 ocean.shootAt(i,j);
             }
         }
@@ -123,6 +123,19 @@ class OceanTest {
 
     @Test
     void getShipsSunk() {
+        int totalNumberOfShipsOnSea = 10;
+        int oceanHeight = 10;
+        int oceanLength = 10;
+        Ocean ocean = new Ocean();
+        ocean.placeAllShipsRandomly();
+
+        for(int i=0; i< oceanHeight; i++){
+            for (int j=0; j< oceanLength; j++){
+                ocean.shootAt(i,j);
+            }
+        }
+
+        assertEquals(totalNumberOfShipsOnSea, ocean.getShipsSunk());
 
     }
 
@@ -132,7 +145,19 @@ class OceanTest {
         ocean.placeAllShipsRandomly();
         ocean.shootAt(5,5);
         assertFalse(ocean.isGameOver());   // should be false because only one shot has been fired
+
+        Ocean ocean1  = new Ocean();
+        ocean1.placeAllShipsRandomly();
+
+        for(int i=0; i< 10; i++){
+            for (int j=0; j< 10; j++){
+                ocean.shootAt(i,j);
+            }
+        }
+        assertTrue(ocean1.isGameOver());
+
     }
+
 
     @Test
     void print() {
@@ -154,6 +179,7 @@ class OceanTest {
                 "7..........\n" +
                 "8..........\n" +
                 "9..........\n", outputDots.toString());
+
     }
 
 }

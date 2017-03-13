@@ -12,6 +12,7 @@ public class EmptySea extends Ship {
     private static int LENGTH = 1;
 
 
+
     /**
      * Cruiser constructor
      * Calls Ship superclass with length 1, length of an empty ship.
@@ -50,6 +51,19 @@ public class EmptySea extends Ship {
     @Override
     public String getShipType() {
         return "Empty sea";
+    }
+
+    /**
+     * Overrides shootAt method inherited from Ship
+     * @param row  the horizontal position of the ship
+     * @param column vertical position of the ship
+     * @return false to indicate that nothing was hit
+     */
+
+    @Override
+    public boolean shootAt(int row, int column){
+        super.shootAt(row,column);
+        return false;
     }
 
 }

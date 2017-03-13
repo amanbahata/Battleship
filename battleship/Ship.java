@@ -45,13 +45,17 @@ public abstract class Ship {
     public boolean shootAt(int row, int column){
         int hitPosition;                            // location in the hit array
         if (isHorizontal()) {
-            hitPosition = column - bowColumn;
-            hit[hitPosition] = true;
-            return true;
+            if (row == getBowRow() && (column >= getBowColumn() && column <= (getBowColumn() + getLength()))) {
+                hitPosition = column - bowColumn;
+                hit[hitPosition] = true;
+                return true;
+            }
         }else if (!isHorizontal()) {
-            hitPosition = row - bowRow;
-            hit[hitPosition] = true;
-            return true;
+            if (column == getBowColumn() && (row >= getBowRow() && row <= (getBowRow() + getLength()))) {
+                hitPosition = row - bowRow;
+                hit[hitPosition] = true;
+                return true;
+            }
         }
         return false;
     }
