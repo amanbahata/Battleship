@@ -26,7 +26,7 @@ class OceanTest {
 
 
     @Test
-    void placeAllShipsRandomly(){
+    void testPlaceAllShipsRandomly(){
         Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
 
@@ -36,14 +36,14 @@ class OceanTest {
     }
 
     @Test
-    void isOccupied() {
+    void testIsOccupied() {
         Ocean ocean = new Ocean();
         assertFalse(ocean.isOccupied(5,5));  //should return false because all the ships haven't
                                                             // been place randomly yet
     }
 
     @Test
-    void hasSunkShipAt() {
+    void testHasSunkShipAt() {
         Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
 
@@ -58,7 +58,7 @@ class OceanTest {
     }
 
     @Test
-    void getShipTypeAt() {
+    void testGetShipTypeAt() {
         Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
         Ship[][] ships = ocean.getShipArray();
@@ -66,7 +66,7 @@ class OceanTest {
     }
 
     @Test
-    void shootAt() {
+    void testShootAt() {
         // create buffer in memory of all the sent
         ByteArrayOutputStream outputDots = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputDots));
@@ -94,7 +94,7 @@ class OceanTest {
     }
 
     @Test
-    void getShotsFired() {
+    void testGetShotsFired() {
         Ocean ocean = new Ocean();
         ocean.shootAt(4,4);
         ocean.shootAt(4,7);
@@ -105,7 +105,7 @@ class OceanTest {
     }
 
     @Test
-    void getHitCount() {
+    void testGetHitCount() {
         int totalLengthOfShipsInSquares = 4 + (3 * 2) + (2 * 3) + 4;
         int oceanLength = 10;
         int oceanHeight = 10;
@@ -122,7 +122,7 @@ class OceanTest {
     }
 
     @Test
-    void getShipsSunk() {
+    void testGetShipsSunk() {
         int totalNumberOfShipsOnSea = 10;
         int oceanHeight = 10;
         int oceanLength = 10;
@@ -141,7 +141,7 @@ class OceanTest {
     }
 
     @Test
-    void isGameOver() {
+    void testIsGameOver() {
         Ocean ocean = new Ocean();
         ocean.placeAllShipsRandomly();
         ocean.shootAt(5,5);
@@ -165,7 +165,7 @@ class OceanTest {
 
 
     @Test
-    void print() {
+    void testPrint() {
         // create buffer in memory of all the sent
         ByteArrayOutputStream outputDots = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputDots));
